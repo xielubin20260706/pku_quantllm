@@ -1,0 +1,131 @@
+{
+  "batch_size": 16,
+  "budget_schedule": "explore 100% (R0-R2), 80% (R3-R9), 75% (R10-R19), 70% (R20-R34), 40% (R35+); mutation parents limited to previous 5 rounds",
+  "cache": {
+    "cache_version": "v3-cache-v2-symbol-safe",
+    "label_horizons": [
+      5
+    ],
+    "y_thresholds": [
+      0.005,
+      0.01
+    ],
+    "zscore_clip": 6.0,
+    "zscore_min_periods": 126,
+    "zscore_window": 252
+  },
+  "created_at": "2026-10-05T11:56:44.334385+00:00",
+  "ema_alpha": 0.1,
+  "end": "2024-12-31",
+  "engine_version": "v3-array-engine-v6-period-stride-ema-0.1-scale-100-annual-q90-band",
+  "evaluation_end": "2024-12-31",
+  "evaluation_start": "2020-01-01",
+  "frequency": "1d",
+  "group_sharpe_score": {
+    "horizons": [
+      1,
+      5,
+      10
+    ],
+    "monotonicity_mode": "continuous_penalty_no_hard_gate",
+    "monotonicity_penalty": 1.0,
+    "require_monotonic": false,
+    "version": "stock_group9_sharpe_monotonic_open_partial_v3"
+  },
+  "indicator_registry_id": "stream_registry_22a39ab74e4ffb00",
+  "indicator_sources": [
+    "legacy"
+  ],
+  "output_scale": 100.0,
+  "output_transform": {
+    "band": {
+      "grouping": "per_symbol",
+      "lookback_years": 5,
+      "method": "annual_frozen_abs_delta_quantile",
+      "min_observations": 128,
+      "quantile": 0.9
+    },
+    "ema_alpha": 0.1,
+    "output_scale": 100.0,
+    "version": "ema-0.1-scale-100-annual-q90-band-v1"
+  },
+  "pool_id": "v3_pool_e0848445151bf91f",
+  "pool_refs": [
+    "legacy:close_open_correlation@fast",
+    "legacy:close_open_correlation@mid",
+    "legacy:close_open_correlation@slow",
+    "legacy:gap_volatility@fast",
+    "legacy:gap_volatility@mid",
+    "legacy:gap_volatility@slow",
+    "legacy:intraday_body_momentum@fast",
+    "legacy:intraday_body_momentum@mid",
+    "legacy:intraday_body_momentum@slow",
+    "legacy:momentum_arithmetic@fast",
+    "legacy:momentum_arithmetic@mid",
+    "legacy:momentum_arithmetic@slow",
+    "legacy:overnight_gap_momentum@fast",
+    "legacy:overnight_gap_momentum@mid",
+    "legacy:overnight_gap_momentum@slow",
+    "legacy:tv_tv2_raw_530__signed_gap_event@fast",
+    "legacy:tv_tv2_raw_530__signed_gap_event@mid",
+    "legacy:tv_tv2_raw_530__signed_gap_event@slow"
+  ],
+  "pool_size": 18,
+  "protocol": "v3-closed-loop-lookup-v1",
+  "result_materialization": "lookup_artifact_only",
+  "score": {
+    "annualization": 252.0,
+    "evaluation_end": "2024-12-31",
+    "evaluation_start": "2020-01-01",
+    "mul_horizon": 24,
+    "score_version": "v3_lookup_value_t1_mul24_sharpe_turnover_v2_q90_t003",
+    "turnover_penalty_weight": 0.2,
+    "turnover_scale": 0.01,
+    "turnover_threshold": 0.03,
+    "value_cost_bps": 0.0
+  },
+  "score_mode": "stock-group-sharpe-monotonic",
+  "search_mode": "lgbm_explore_exploit_mutation",
+  "search_space": {
+    "k_by_m": {
+      "3": [
+        1,
+        2
+      ],
+      "4": [
+        1,
+        2
+      ],
+      "5": [
+        1
+      ],
+      "6": [
+        1
+      ],
+      "7": [
+        1
+      ],
+      "8": [
+        1
+      ]
+    },
+    "m": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "search_space_name": "stock_capacity_v1",
+  "seed": 20261005,
+  "start": "2016-01-01",
+  "stock_score": null,
+  "stream_profiles": [
+    "fast",
+    "mid",
+    "slow"
+  ],
+  "total_rounds": 4
+}

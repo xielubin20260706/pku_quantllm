@@ -1,0 +1,20 @@
+[
+  "legacy:close_open_correlation@fast",
+  "legacy:close_open_correlation@mid",
+  "legacy:close_open_correlation@slow",
+  "legacy:gap_volatility@fast",
+  "legacy:gap_volatility@mid",
+  "legacy:gap_volatility@slow",
+  "legacy:intraday_body_momentum@fast",
+  "legacy:intraday_body_momentum@mid",
+  "legacy:intraday_body_momentum@slow",
+  "legacy:momentum_arithmetic@fast",
+  "legacy:momentum_arithmetic@mid",
+  "legacy:momentum_arithmetic@slow",
+  "legacy:overnight_gap_momentum@fast",
+  "legacy:overnight_gap_momentum@mid",
+  "legacy:overnight_gap_momentum@slow",
+  "legacy:tv_tv2_raw_530__signed_gap_event@fast",
+  "legacy:tv_tv2_raw_530__signed_gap_event@mid",
+  "legacy:tv_tv2_raw_530__signed_gap_event@slow"
+]

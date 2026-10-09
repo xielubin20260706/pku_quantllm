@@ -1,0 +1,5 @@
+v3 state cache ready=18/18 missing=0
+round=0 completed=16 workers=4 budget=16/0/0 surrogate_ready=False
+round=1 already_complete=16
+round=2 completed=16 workers=4 budget=16/0/0 surrogate_ready=False
+round=3 already_complete=16

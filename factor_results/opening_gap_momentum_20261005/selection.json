@@ -1,0 +1,325 @@
+{
+  "expected_roots": 64,
+  "finite_unique_scored_roots": 64,
+  "lookup_artifacts_present": 64,
+  "ranking": "score descending, root_id ascending for ties",
+  "score_interpretation": "G9 open-price Sharpe with continuous monotonicity penalty; no hard monotonicity gate",
+  "score_mode": "stock-group-sharpe-monotonic",
+  "selected_count": 20,
+  "selection_period": [
+    "2020-01-01",
+    "2024-12-31"
+  ],
+  "status": "completed",
+  "top": [
+    {
+      "artifact_path": "artifacts/top20/v3_916c0fd580c512b7.npz",
+      "indicators": [
+        "legacy:intraday_body_momentum@slow",
+        "legacy:momentum_arithmetic@slow",
+        "legacy:overnight_gap_momentum@fast"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.11716448099016971,
+      "root_id": "v3_916c0fd580c512b7",
+      "score": 1.1825077391235759,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_b6839f774de0cc3e.npz",
+      "indicators": [
+        "legacy:close_open_correlation@fast",
+        "legacy:gap_volatility@fast",
+        "legacy:gap_volatility@slow",
+        "legacy:momentum_arithmetic@slow"
+      ],
+      "k": 2,
+      "m": 4,
+      "mono_violation_mean": 0.0494004060391818,
+      "root_id": "v3_b6839f774de0cc3e",
+      "score": 1.158017050525412,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_bc0bfbecc237c92d.npz",
+      "indicators": [
+        "legacy:intraday_body_momentum@slow",
+        "legacy:momentum_arithmetic@mid",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.0253997797204213,
+      "root_id": "v3_bc0bfbecc237c92d",
+      "score": 1.149160254647053,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_1572a4c6f56e7876.npz",
+      "indicators": [
+        "legacy:gap_volatility@mid",
+        "legacy:intraday_body_momentum@slow",
+        "legacy:momentum_arithmetic@fast",
+        "legacy:overnight_gap_momentum@mid",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid",
+        "legacy:tv_tv2_raw_530__signed_gap_event@slow"
+      ],
+      "k": 1,
+      "m": 7,
+      "mono_violation_mean": 0.0013853309721042484,
+      "root_id": "v3_1572a4c6f56e7876",
+      "score": 1.143569784636103,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_b468b6a421be18c8.npz",
+      "indicators": [
+        "legacy:intraday_body_momentum@fast",
+        "legacy:momentum_arithmetic@fast",
+        "legacy:momentum_arithmetic@mid",
+        "legacy:momentum_arithmetic@slow"
+      ],
+      "k": 2,
+      "m": 4,
+      "mono_violation_mean": 0.00279315243478806,
+      "root_id": "v3_b468b6a421be18c8",
+      "score": 1.1338704026257367,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_cf7bd9d913053a93.npz",
+      "indicators": [
+        "legacy:intraday_body_momentum@slow",
+        "legacy:overnight_gap_momentum@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@slow"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.08508061266652392,
+      "root_id": "v3_cf7bd9d913053a93",
+      "score": 1.1327371443365537,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_60355498e9c57f21.npz",
+      "indicators": [
+        "legacy:intraday_body_momentum@fast",
+        "legacy:overnight_gap_momentum@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.0,
+      "root_id": "v3_60355498e9c57f21",
+      "score": 1.0889226814194437,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_fc3eacf18afcfdc6.npz",
+      "indicators": [
+        "legacy:gap_volatility@fast",
+        "legacy:intraday_body_momentum@fast",
+        "legacy:overnight_gap_momentum@mid",
+        "legacy:overnight_gap_momentum@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid",
+        "legacy:tv_tv2_raw_530__signed_gap_event@slow"
+      ],
+      "k": 1,
+      "m": 7,
+      "mono_violation_mean": 0.02756600144798029,
+      "root_id": "v3_fc3eacf18afcfdc6",
+      "score": 1.0743408587700016,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_99bcc6a8bc90fec2.npz",
+      "indicators": [
+        "legacy:momentum_arithmetic@mid",
+        "legacy:overnight_gap_momentum@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.00572980526467769,
+      "root_id": "v3_99bcc6a8bc90fec2",
+      "score": 1.0711257702032666,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_fd1b266b48bfcb39.npz",
+      "indicators": [
+        "legacy:close_open_correlation@fast",
+        "legacy:intraday_body_momentum@mid",
+        "legacy:momentum_arithmetic@fast",
+        "legacy:overnight_gap_momentum@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@slow"
+      ],
+      "k": 1,
+      "m": 5,
+      "mono_violation_mean": 0.0391044227007041,
+      "root_id": "v3_fd1b266b48bfcb39",
+      "score": 1.0699326275799248,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_fafb2986afd8dbdc.npz",
+      "indicators": [
+        "legacy:close_open_correlation@mid",
+        "legacy:intraday_body_momentum@fast",
+        "legacy:momentum_arithmetic@slow"
+      ],
+      "k": 1,
+      "m": 3,
+      "mono_violation_mean": 0.0022649331247917683,
+      "root_id": "v3_fafb2986afd8dbdc",
+      "score": 1.0448169314602689,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_647d0fce1bb17995.npz",
+      "indicators": [
+        "legacy:close_open_correlation@fast",
+        "legacy:gap_volatility@mid",
+        "legacy:gap_volatility@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast"
+      ],
+      "k": 2,
+      "m": 4,
+      "mono_violation_mean": 0.0,
+      "root_id": "v3_647d0fce1bb17995",
+      "score": 1.0437040178127266,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_210f807e6d4cfa15.npz",
+      "indicators": [
+        "legacy:close_open_correlation@slow",
+        "legacy:gap_volatility@slow",
+        "legacy:intraday_body_momentum@mid",
+        "legacy:intraday_body_momentum@slow",
+        "legacy:momentum_arithmetic@fast",
+        "legacy:overnight_gap_momentum@mid",
+        "legacy:overnight_gap_momentum@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast"
+      ],
+      "k": 1,
+      "m": 8,
+      "mono_violation_mean": 0.003399443002502933,
+      "root_id": "v3_210f807e6d4cfa15",
+      "score": 1.0304863809148268,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_b4b18e4afe41c2e6.npz",
+      "indicators": [
+        "legacy:gap_volatility@fast",
+        "legacy:gap_volatility@slow",
+        "legacy:momentum_arithmetic@slow"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.09751186042557815,
+      "root_id": "v3_b4b18e4afe41c2e6",
+      "score": 1.0293412955898895,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_3a6de5d00634ba30.npz",
+      "indicators": [
+        "legacy:intraday_body_momentum@slow",
+        "legacy:overnight_gap_momentum@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.09409614898824473,
+      "root_id": "v3_3a6de5d00634ba30",
+      "score": 1.0253044778937506,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_6d907fac001416ba.npz",
+      "indicators": [
+        "legacy:gap_volatility@mid",
+        "legacy:gap_volatility@slow",
+        "legacy:intraday_body_momentum@slow",
+        "legacy:momentum_arithmetic@fast",
+        "legacy:overnight_gap_momentum@fast",
+        "legacy:overnight_gap_momentum@mid"
+      ],
+      "k": 1,
+      "m": 6,
+      "mono_violation_mean": 0.018681743878531398,
+      "root_id": "v3_6d907fac001416ba",
+      "score": 1.0173867505037533,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_4c5a2ec19e3204ad.npz",
+      "indicators": [
+        "legacy:gap_volatility@mid",
+        "legacy:gap_volatility@slow",
+        "legacy:intraday_body_momentum@slow",
+        "legacy:overnight_gap_momentum@mid",
+        "legacy:overnight_gap_momentum@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid"
+      ],
+      "k": 1,
+      "m": 6,
+      "mono_violation_mean": 0.031282488869588745,
+      "root_id": "v3_4c5a2ec19e3204ad",
+      "score": 0.996682891846474,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_2b017868d35e1817.npz",
+      "indicators": [
+        "legacy:momentum_arithmetic@slow",
+        "legacy:overnight_gap_momentum@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.01782183563452928,
+      "root_id": "v3_2b017868d35e1817",
+      "score": 0.9947805702690552,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_f77fe556144cd6d6.npz",
+      "indicators": [
+        "legacy:gap_volatility@fast",
+        "legacy:momentum_arithmetic@slow",
+        "legacy:overnight_gap_momentum@fast"
+      ],
+      "k": 2,
+      "m": 3,
+      "mono_violation_mean": 0.005251970046907218,
+      "root_id": "v3_f77fe556144cd6d6",
+      "score": 0.988437628186719,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    },
+    {
+      "artifact_path": "artifacts/top20/v3_08bf8008697abecf.npz",
+      "indicators": [
+        "legacy:gap_volatility@mid",
+        "legacy:intraday_body_momentum@fast",
+        "legacy:intraday_body_momentum@mid",
+        "legacy:intraday_body_momentum@slow",
+        "legacy:momentum_arithmetic@fast",
+        "legacy:momentum_arithmetic@slow",
+        "legacy:tv_tv2_raw_530__signed_gap_event@fast",
+        "legacy:tv_tv2_raw_530__signed_gap_event@mid"
+      ],
+      "k": 1,
+      "m": 8,
+      "mono_violation_mean": 0.026395361627378617,
+      "root_id": "v3_08bf8008697abecf",
+      "score": 0.9841226550845916,
+      "score_version": "stock_group9_sharpe_monotonic_open_partial_v3"
+    }
+  ]
+}

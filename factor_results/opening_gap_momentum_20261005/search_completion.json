@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "completed_at": "2026-10-05T11:59:02.087173+00:00",
+  "rounds": 4,
+  "batch_size": 16,
+  "completed_roots": 64
+}

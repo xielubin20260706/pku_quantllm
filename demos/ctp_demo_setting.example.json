@@ -1,0 +1,17 @@
+{
+  "environment": "simnow",
+  "userid": "在此填写SimNow账号",
+  "password": "在此填写SimNow密码",
+  "brokerid": "9999",
+  "td_address": "从SimNow产品页面复制交易前置地址",
+  "md_address": "从SimNow产品页面复制行情前置地址",
+  "appid": "simnow_client_test",
+  "auth_code": "在此填写SimNow授权码",
+  "product_info": "",
+  "symbols": [
+    "rb2701",
+    "hc2701",
+    "i2701",
+    "m2701"
+  ]
+}
