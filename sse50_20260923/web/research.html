@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07131f"><title>SSE50 L2 数据探索</title>
+  <link rel="stylesheet" href="/research.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="返回模拟交易终端"><span class="brand-mark">S</span><span><b>SSE50 <i>LAB</i></b><small>LEVEL 2 · 2026-09-23</small></span></a>
+      <a class="back" href="/">← 返回模拟交易</a>
+    </header>
+    <main>
+      <section class="hero">
+        <div><div class="eyebrow">MARKET MICROSTRUCTURE EXPLORER</div><h1>Level 2 数据里，能读出什么？</h1><p>从逐笔委托、逐笔成交和快照，观察当天的成交节奏、订单流与盘口状态。</p></div>
+        <div class="date-chip">上证 50 · 2026.09.23</div>
+      </section>
+      <section id="loading" class="panel loading">正在载入本地分析结果…</section>
+      <div id="dashboard" hidden>
+        <section id="metrics" class="metrics"></section>
+        <section class="grid two">
+          <article class="panel chart-panel"><div class="heading"><div><h2>盘中成交额节奏</h2><p>连续竞价，5 分钟聚合；不含集合竞价及盘后成交</p></div><span class="tag">按成交发生时间</span></div><div id="intradayChart" class="chart"></div></article>
+          <article class="panel chart-panel"><div class="heading"><div><h2>单笔成交金额分层</h2><p>分组统计成交笔数占比与成交额占比</p></div><span class="tag">主动买卖成交</span></div><div id="sizeChart" class="size-chart"></div></article>
+        </section>
+        <section class="grid two">
+          <article class="panel"><div class="heading"><div><h2>主动买卖成交额</h2><p>基于逐笔成交方向的订单流压力代理</p></div><span class="tag">不代表净资金流</span></div><div id="flowBars" class="flow-bars"></div><p id="flowNote" class="small-note"></p></article>
+          <article class="panel"><div class="heading"><div><h2>新增委托与撤单</h2><p>连续竞价逐笔委托消息汇总</p></div><span class="tag">观察比率</span></div><div id="orderSummary" class="order-summary"></div><p class="small-note">撤单/新增量比是消息样本中的观察值，不等于全市场真实撤单概率。</p></article>
+        </section>
+        <section class="panel stock-explorer">
+          <div class="heading"><div><h2>每只个股的 L2 派生信息</h2><p>逐只汇总成交、委托/撤单、订单流和盘口特征；选择证券查看盘中节奏</p></div><div class="stock-tools"><label class="stock-picker">选择证券 <select id="stockSelect"></select></label><input id="stockFilter" type="search" placeholder="筛选代码"></div></div>
+          <div id="stockMetrics" class="stock-metrics"></div>
+          <div class="heading subheading"><div><h3>个股 5 分钟成交与订单流</h3><p>当前证券的逐笔成交聚合</p></div></div>
+          <div id="stockIntraday" class="chart stock-chart"></div>
+          <div class="heading subheading"><div><h3>50 只证券指标总表</h3><p>点击行可切换上方个股画像及下方原始明细</p></div></div>
+          <div class="table-wrap stock-table-wrap"><table id="stockTable"></table></div>
+        </section>
+        <section class="panel raw-explorer">
+          <div class="heading"><div><h2>完整 L2 原始数据浏览</h2><p>按证券、数据类型、时段分页查看原始字段；也可下载完整 Parquet 文件</p></div><div class="downloads"><a href="/download/ord">委托 ord</a><a href="/download/exe">成交 exe</a><a href="/download/snp">快照 snp</a></div></div>
+          <p id="rawInventory" class="inventory-note"></p>
+          <div class="raw-controls"><label>数据<select id="rawDataset"><option value="ord">逐笔委托 ord</option><option value="exe">逐笔成交 exe</option><option value="snp">行情快照 snp</option></select></label><label>起始时间<input id="rawStart" type="time" step="1"></label><label>结束时间<input id="rawEnd" type="time" step="1"></label><button id="rawLoad" class="button">载入明细</button><span id="rawInfo" class="raw-info"></span></div>
+          <div class="table-wrap raw-table-wrap"><table id="rawTable"></table></div>
+          <div class="pager"><button id="rawPrev" class="button" disabled>上一页</button><span id="rawPage">—</span><button id="rawNext" class="button" disabled>下一页</button></div>
+        </section>
+        <section class="panel strategy-panel">
+          <div class="heading"><div><h2>哪些 L2 特征可以形成研究假设？</h2><p>用当天数据观察 5 分钟特征与后续收益的关系，寻找值得用更多日期验证的线索</p></div><span class="tag">单日 · 假设生成</span></div>
+          <div id="strategyTable" class="table-wrap"></div>
+          <p id="strategyLimits" class="small-note"></p>
+        </section>
+        <section class="panel idea-panel">
+          <div class="heading"><div><h2>提交一个策略想法</h2><p>写下你的假设，选择可计算的 L2 特征和检验设定，网页会返回对应的历史筛查结果</p></div><span class="tag">本地研究接口</span></div>
+          <form id="ideaForm">
+            <label class="idea-description">你的想法<textarea id="ideaText" maxlength="500" required placeholder="例如：当 L5 买盘深度明显强于卖盘时，后续 10 分钟收益是否更高？"></textarea></label>
+            <div class="idea-controls">
+              <label>对应特征<select id="ideaFeature"></select></label>
+              <label>方向<select id="ideaDirection"><option value="high">高特征值组</option><option value="low">低特征值组</option></select></label>
+              <label>预测周期<select id="ideaHorizon"><option value="5">后续 5 分钟</option><option value="10">后续 10 分钟</option><option value="15">后续 15 分钟</option></select></label>
+              <label>分组比例<select id="ideaQuantile"><option value="0.1">高/低各 10%</option><option value="0.2" selected>高/低各 20%</option><option value="0.3">高/低各 30%</option><option value="0.4">高/低各 40%</option></select></label>
+              <label>假设总成本<input id="ideaCost" type="number" min="0" max="1000" step="0.1" value="5"><small>bp，情景参考，含进出场</small></label>
+              <label>样本范围<select id="ideaScope"><option value="all">全部 50 只</option><option value="selected">当前选择个股</option></select></label>
+              <button id="ideaSubmit" type="submit" class="button button-primary">生成研究线索</button>
+            </div>
+          </form>
+          <div id="ideaStatus" class="idea-status" aria-live="polite"></div>
+          <div id="ideaHistory" class="idea-history"></div>
+          <p class="small-note">结果用于产生和排序后续研究假设。bp 成本仅作敏感性情景，不代表真实成本或盈利结论。网页按选择的特征定义做统计筛查，不会把任意自然语言自动转成新公式。</p>
+        </section>
+        <section class="grid two">
+          <article class="panel rules"><div class="heading"><div><h2>字段规则速览</h2><p>按数据结构理解事件，不把序号跳号直接当成丢包</p></div></div><div id="rules"></div></article>
+          <article class="panel"><div class="heading"><div><h2>盘口快照与解释边界</h2><p>快照描述盘口状态，不等于逐笔委托簿事件</p></div></div><div id="snapshotMetrics" class="snapshot-metrics"></div><ul id="limits" class="limits"></ul></article>
+        </section>
+        <footer>分析口径：逐笔成交金额 = 价格 × 股数。≥10 万元仅为本次探索阈值。数据仅覆盖一个交易日和上证 50 样本；结果用于提出后续研究假设。<br>规则参考：<a href="https://www.sseinfo.com/services/assortment/level2/" target="_blank" rel="noreferrer">上证所 Level-2 产品说明</a> · <a href="https://www.sseinfo.com/services/assortment/market/hqywwd/wdzsjk/c/10832622/files/f50ea4de31d843ceb26f5789245c0dfe.pdf" target="_blank" rel="noreferrer">竞价 Level-2 接口说明书 2.0.16</a></footer>
+      </div>
+    </main>
+  </div>
+  <script src="/research.js"></script>
+</body></html>

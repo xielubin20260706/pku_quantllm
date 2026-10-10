@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07131f">
+  <title>SSE50 模拟交易终端</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <div class="brand-name">SSE50 <span>REPLAY</span></div>
+          <div class="brand-subtitle">上交所逐笔行情 · 模拟撮合终端</div>
+        </div>
+      </div>
+      <div class="topbar-meta">
+        <a class="research-link" href="/research">L2 数据探索</a>
+        <span class="live-dot"></span><span>历史回放</span>
+        <span class="meta-divider"></span>
+        <span id="sessionLabel">2026-09-23</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="replay-strip panel">
+        <div class="replay-heading">
+          <div>
+            <div class="eyebrow">MARKET REPLAY</div>
+            <div class="clock-row"><span id="clock">--:--:--</span><span id="sessionBadge" class="badge">加载中</span></div>
+          </div>
+          <div class="jump-control">
+            <label for="jumpTime">跳转至</label>
+            <input id="jumpTime" type="time" step="1" value="09:30:00">
+            <button id="jumpButton" class="button button-quiet">跳转</button>
+          </div>
+        </div>
+        <div class="transport-row">
+          <div class="transport-buttons">
+            <button id="backButton" class="icon-button" title="后退 1 秒" aria-label="后退 1 秒">−1s</button>
+            <button id="playButton" class="button button-primary"><span id="playIcon">▶</span><span id="playText">播放</span></button>
+            <button id="forwardButton" class="icon-button" title="前进 1 秒" aria-label="前进 1 秒">+1s</button>
+          </div>
+          <div class="timeline-wrap">
+            <input id="timeline" type="range" min="0" max="1" value="0" aria-label="回放时间轴">
+            <div class="timeline-labels"><span>09:15</span><span id="timelinePercent">0%</span><span>15:00</span></div>
+          </div>
+          <label class="speed-select">速度
+            <select id="speedSelect"><option value="1000">1×</option><option value="200">5×</option><option value="50">20×</option></select>
+          </label>
+          <button id="resetButton" class="button button-quiet reset-button">重置账户</button>
+        </div>
+        <p class="replay-hint">回退到较早时刻会重置模拟账户；午休时段时间轴直接跨越。</p>
+      </section>
+
+      <section class="quote-header">
+        <div class="instrument">
+          <div class="instrument-label">当前证券</div>
+          <select id="symbolSelect" aria-label="选择证券代码"></select>
+          <span class="instrument-exchange">SSE</span>
+        </div>
+        <div class="quote-last"><span class="instrument-label">最新成交价</span><strong id="lastPrice">—</strong></div>
+        <div class="quote-stat"><span class="instrument-label">当前买一</span><strong id="bestBid">—</strong></div>
+        <div class="quote-stat"><span class="instrument-label">当前卖一</span><strong id="bestAsk">—</strong></div>
+        <div class="quote-stat quote-note"><span class="instrument-label">数据日期</span><strong>2026-09-23</strong></div>
+      </section>
+
+      <section class="panel chart-panel">
+        <div class="panel-heading chart-heading">
+          <div><div class="panel-title">价格走势</div><div class="panel-caption">逐笔成交聚合 OHLCV · 仅展示回放时刻之前已完成的 K 线</div></div>
+          <div class="chart-tools">
+            <div class="chart-intervals" role="group" aria-label="K线周期">
+              <button id="interval1" class="chart-interval active" data-interval="1">1 分钟</button>
+              <button id="interval5" class="chart-interval" data-interval="5">5 分钟</button>
+            </div>
+            <span class="panel-tag" id="chartSession">—</span>
+          </div>
+        </div>
+        <div id="chartStage" class="chart-stage">
+          <canvas id="klineCanvas" aria-label="逐笔成交聚合 K 线图"></canvas>
+          <div id="chartTooltip" class="chart-tooltip" hidden></div>
+        </div>
+        <div class="chart-legend"><span><i class="candle-swatch up"></i>上涨</span><span><i class="candle-swatch down"></i>下跌</span><span>下方柱为成交量</span><span><i class="marker-swatch">B/S·O</i>模拟成交 / 挂单</span><span id="chartBarCount" class="chart-bar-count">等待行情</span></div>
+      </section>
+
+      <div class="dashboard-grid">
+        <div class="market-column">
+          <section class="panel book-panel">
+            <div class="panel-heading">
+              <div><div class="panel-title">五档盘口</div><div class="panel-caption">当前回放时刻 · 价格 / 委托股数</div></div>
+              <span class="panel-tag">L5</span>
+            </div>
+            <div class="book-table-wrap">
+              <table class="book-table">
+                <thead><tr><th>档位</th><th class="align-right">买量</th><th class="align-right">买价</th><th class="align-right">卖价</th><th class="align-right">卖量</th></tr></thead>
+                <tbody id="bookRows"></tbody>
+              </table>
+            </div>
+            <div class="book-legend"><span><i class="legend-dot bid-dot"></i>买盘</span><span><i class="legend-dot ask-dot"></i>卖盘</span><span id="bookTime">盘口时间 —</span></div>
+          </section>
+
+          <section class="panel tape-panel">
+            <div class="panel-heading">
+              <div><div class="panel-title">逐笔成交</div><div class="panel-caption">按回放时刻倒序 · 最近 60 笔</div></div>
+              <span id="tradeCount" class="panel-tag">0 笔</span>
+            </div>
+            <div class="table-scroll tape-scroll">
+              <table class="data-table">
+                <thead><tr><th>成交时间</th><th>方向</th><th class="align-right">成交价</th><th class="align-right">成交量</th></tr></thead>
+                <tbody id="tradeRows"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <aside class="account-column">
+          <section class="panel order-panel">
+            <div class="panel-heading">
+              <div><div class="panel-title">限价委托</div><div class="panel-caption">模拟账户 · 100 股整数倍</div></div>
+              <span class="panel-tag">SIM</span>
+            </div>
+            <div class="side-switch" role="group" aria-label="委托方向">
+              <button class="side-button buy active" data-side="BUY">买入</button>
+              <button class="side-button sell" data-side="SELL">卖出</button>
+            </div>
+            <form id="orderForm">
+              <label class="field-label" for="orderPrice">限价（元）</label>
+              <div class="input-with-unit"><input id="orderPrice" type="number" min="0.01" step="0.01" required><span>¥</span></div>
+              <label class="field-label" for="orderQuantity">数量（股）</label>
+              <input id="orderQuantity" class="full-input" type="number" min="100" step="100" value="100" required>
+              <div id="orderCapacity" class="capacity-line">—</div>
+              <button id="submitOrder" class="button button-buy submit-order" type="submit">买入下单</button>
+            </form>
+            <div class="execution-note">可成交部分按当前可见 L5 撮合；未成交部分进入模拟队列。</div>
+          </section>
+
+          <section class="panel account-panel">
+            <div class="panel-heading"><div><div class="panel-title">账户概览</div><div class="panel-caption">初始资金 ¥1,000,000.00</div></div></div>
+            <div class="account-metrics">
+              <div><span>可用资金</span><strong id="availableCash">—</strong></div>
+              <div><span>账户权益</span><strong id="equity">—</strong></div>
+              <div><span>持仓市值</span><strong id="marketValue">—</strong></div>
+              <div><span>浮动盈亏</span><strong id="unrealizedPnl">—</strong></div>
+            </div>
+            <div class="cash-line"><span>现金余额</span><strong id="cash">—</strong><span class="reserved">冻结 <b id="reservedCash">—</b></span></div>
+          </section>
+
+          <section class="panel compact-panel">
+            <div class="panel-heading"><div><div class="panel-title">当前证券持仓</div><div class="panel-caption">可卖 <span id="availablePosition">0</span> 股</div></div></div>
+            <div class="position-summary"><strong id="positionQuantity">0</strong><span>股</span><span>成本价</span><b id="averageCost">—</b><span>已实现</span><b id="realizedPnl">—</b></div>
+          </section>
+        </aside>
+      </div>
+
+      <div class="lower-grid">
+        <section class="panel table-panel">
+          <div class="panel-heading"><div><div class="panel-title">未完成委托</div><div class="panel-caption">模拟订单 · 可随时撤单</div></div><span id="openOrderCount" class="panel-tag">0 笔</span></div>
+          <div class="table-scroll short-table"><table class="data-table"><thead><tr><th>委托编号</th><th>证券</th><th>方向</th><th class="align-right">委托价</th><th class="align-right">剩余量</th><th>状态</th><th></th></tr></thead><tbody id="orderRows"></tbody></table></div>
+        </section>
+        <section class="panel table-panel">
+          <div class="panel-heading"><div><div class="panel-title">模拟成交回报</div><div class="panel-caption">当前账户最近成交</div></div><span id="fillCount" class="panel-tag">0 笔</span></div>
+          <div class="table-scroll short-table"><table class="data-table"><thead><tr><th>成交时间</th><th>证券</th><th>方向</th><th class="align-right">成交价</th><th class="align-right">成交量</th><th>来源</th></tr></thead><tbody id="fillRows"></tbody></table></div>
+        </section>
+      </div>
+
+      <section class="panel positions-panel">
+        <div class="panel-heading"><div><div class="panel-title">全部持仓</div><div class="panel-caption">按最新历史成交价估值</div></div></div>
+        <div class="table-scroll short-table"><table class="data-table"><thead><tr><th>证券</th><th class="align-right">持仓</th><th class="align-right">可用</th><th class="align-right">成本价</th><th class="align-right">最新价</th><th class="align-right">市值</th><th class="align-right">浮动盈亏</th><th class="align-right">已实现盈亏</th></tr></thead><tbody id="positionRows"></tbody></table></div>
+      </section>
+
+      <footer class="footnote"><span class="footnote-mark">i</span><p>这是基于历史数据的教学模拟：历史逐笔成交不会被模拟委托改变；队列位置按下单时可见同价 L5 数量近似估算，撤单与新委托未实时重建历史簿。集合竞价成交不用于推断模拟成交。模拟账户只保存在本地服务进程内。</p></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
