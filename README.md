@@ -27,6 +27,7 @@
 | 晟 | 23＊＊＊＊＊＊37 | [Suichopath111](https://github.com/Suichopath111) |
 | 慈 | 26＊＊＊＊＊＊26 | [strayberry777](https://github.com/strayberry777) |
 | 达 | 24＊＊＊＊＊＊07 | [Peida-Lee](https://github.com/Peida-Lee) |
+| 彬 | 25＊＊＊＊＊＊28 | [xielubin20260706](https://github.com/xielubin20260706) |
 | 源 | 26＊＊＊＊＊＊44 | [Lumyturn](https://github.com/Lumyturn) |
 | 霏 | 23＊＊＊＊＊＊42 | [alittlehei](https://github.com/alittlehei) |
 | 欢 | 24＊＊＊＊＊＊63 | [tyoukan1994](https://github.com/tyoukan1994) |
