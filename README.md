@@ -35,4 +35,5 @@
 | 凯 | 26＊＊＊＊＊＊18 | [ETAOIK](https://github.com/ETAOIK) |
 | 杰 | 24＊＊＊＊＊＊54 | [sog477](https://github.com/sog477) |
 | 芸 | 26＊＊＊＊＊＊02 | [yun-lang-itzy](https://github.com/yun-lang-itzy) |
+| 彬 | 25＊＊＊＊＊＊28 | [Xielubin](https://github.com/Xielubin) |
 | 宇 | 24＊＊＊＊＊＊53 | [QiyuZhang-new](https://github.com/QiyuZhang-new) |
